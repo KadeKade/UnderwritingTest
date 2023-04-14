@@ -1,0 +1,69 @@
+
+entity Action {
+	actionDefinition String,
+}
+
+entity ActionParameters {
+	parameterName String,
+    displayNameDe String,
+    displayNameEn String,
+    displayNameFr String,
+    displayNameIt String
+}
+
+entity ActionParameterValues {
+	parameterValue String
+}
+
+entity CriteriaSet {
+	name String,
+    
+	insurerId Long,
+    lobId Long  
+}
+
+entity Criteria {
+    operator Operator,
+    propertyValue String
+}
+
+relationship ManyToOne {
+	Criteria{property} to CriteriaPropery
+}
+
+entity CriteriaPropery {
+	propertyName String,
+    displayNameDe String,
+    displayNameEn String,
+    displayNameFr String,
+    displayNameIt String
+}
+
+//Action Parameters relations
+relationship ManyToOne {
+	ActionParameters{action} to Action
+    ActionParameterValues{parameter} to ActionParameters
+}
+
+
+//CriteriaSet's relations
+relationship ManyToOne {
+	CriteriaSet{positiveAction} to Action
+    CriteriaSet{positiveActionParameters} to ActionParameterValues
+    
+    CriteriaSet{negativeAction} to Action
+    CriteriaSet{negativeActionParameters} to ActionParameterValues
+    
+    Criteria{criteria} to CriteriaSet
+}
+
+enum Operator {
+  NOT_EQUAL_TO,
+  EQUAL_TO,
+  CONTAINS,
+  GREATER_THAN,
+  LESS_THAN,
+  GREATER_THAN_OR_EQUAL_TO,
+  LESS_THAN_OR_EQUAL_TO
+}
+
