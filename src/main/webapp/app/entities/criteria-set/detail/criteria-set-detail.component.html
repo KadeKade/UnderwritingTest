@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="criteriaSet">
+      <h2 data-cy="criteriaSetDetailsHeading"><span>Criteria Set</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ criteriaSet.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ criteriaSet.name }}</span>
+        </dd>
+        <dt><span>Insurer Id</span></dt>
+        <dd>
+          <span>{{ criteriaSet.insurerId }}</span>
+        </dd>
+        <dt><span>Lob Id</span></dt>
+        <dd>
+          <span>{{ criteriaSet.lobId }}</span>
+        </dd>
+        <dt><span>Positive Action</span></dt>
+        <dd>
+          <div *ngIf="criteriaSet.positiveAction">
+            <a [routerLink]="['/action', criteriaSet.positiveAction.id, 'view']">{{ criteriaSet.positiveAction.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Positive Action Parameters</span></dt>
+        <dd>
+          <div *ngIf="criteriaSet.positiveActionParameters">
+            <a [routerLink]="['/action-parameter-values', criteriaSet.positiveActionParameters.id, 'view']">{{
+              criteriaSet.positiveActionParameters.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Negative Action</span></dt>
+        <dd>
+          <div *ngIf="criteriaSet.negativeAction">
+            <a [routerLink]="['/action', criteriaSet.negativeAction.id, 'view']">{{ criteriaSet.negativeAction.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Negative Action Parameters</span></dt>
+        <dd>
+          <div *ngIf="criteriaSet.negativeActionParameters">
+            <a [routerLink]="['/action-parameter-values', criteriaSet.negativeActionParameters.id, 'view']">{{
+              criteriaSet.negativeActionParameters.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/criteria-set', criteriaSet.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

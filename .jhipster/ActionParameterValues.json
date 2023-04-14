@@ -1,0 +1,26 @@
+{
+  "applications": "*",
+  "changelogDate": "20230414132924",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "action_parameter_values",
+  "fields": [
+    {
+      "fieldName": "parameterValue",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ActionParameterValues",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "actionParameters",
+      "relationshipName": "parameter",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

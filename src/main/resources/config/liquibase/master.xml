@@ -17,7 +17,17 @@
     <property name="datetimeType" value="datetime(6)" dbms="mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132922_added_entity_Action.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132923_added_entity_ActionParameters.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132924_added_entity_ActionParameterValues.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132925_added_entity_CriteriaSet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132926_added_entity_Criteria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132927_added_entity_CriteriaPropery.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20230414132923_added_entity_constraints_ActionParameters.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132924_added_entity_constraints_ActionParameterValues.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132925_added_entity_constraints_CriteriaSet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20230414132926_added_entity_constraints_Criteria.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
