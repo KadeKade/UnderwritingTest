@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="actionParameterValues">
+      <h2 data-cy="actionParameterValuesDetailsHeading"><span>Action Parameter Values</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ actionParameterValues.id }}</span>
+        </dd>
+        <dt><span>Parameter Value</span></dt>
+        <dd>
+          <span>{{ actionParameterValues.parameterValue }}</span>
+        </dd>
+        <dt><span>Parameter</span></dt>
+        <dd>
+          <div *ngIf="actionParameterValues.parameter">
+            <a [routerLink]="['/action-parameters', actionParameterValues.parameter.id, 'view']">{{
+              actionParameterValues.parameter.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/action-parameter-values', actionParameterValues.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

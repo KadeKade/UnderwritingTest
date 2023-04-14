@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity CriteriaSet.
+    -->
+    <changeSet id="20230414132925-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="positive_action_id"
+                                 baseTableName="criteria_set"
+                                 constraintName="fk_criteria_set__positive_action_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="action"/>
+
+        <addForeignKeyConstraint baseColumnNames="positive_action_parameters_id"
+                                 baseTableName="criteria_set"
+                                 constraintName="fk_criteria_set__positive_action_parameters_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="action_parameter_values"/>
+
+        <addForeignKeyConstraint baseColumnNames="negative_action_id"
+                                 baseTableName="criteria_set"
+                                 constraintName="fk_criteria_set__negative_action_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="action"/>
+
+        <addForeignKeyConstraint baseColumnNames="negative_action_parameters_id"
+                                 baseTableName="criteria_set"
+                                 constraintName="fk_criteria_set__negative_action_parameters_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="action_parameter_values"/>
+    </changeSet>
+</databaseChangeLog>

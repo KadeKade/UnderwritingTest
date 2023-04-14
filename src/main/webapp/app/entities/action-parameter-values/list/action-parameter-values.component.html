@@ -1,0 +1,101 @@
+<div>
+  <h2 id="page-heading" data-cy="ActionParameterValuesHeading">
+    <span>Action Parameter Values</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-action-parameter-values"
+        [routerLink]="['/action-parameter-values/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Action Parameter Values </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="actionParameterValues?.length === 0">
+    <span>No Action Parameter Values found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="actionParameterValues && actionParameterValues.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parameterValue">
+            <div class="d-flex">
+              <span>Parameter Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parameter.id">
+            <div class="d-flex">
+              <span>Parameter</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let actionParameterValues of actionParameterValues; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/action-parameter-values', actionParameterValues.id, 'view']">{{ actionParameterValues.id }}</a>
+          </td>
+          <td>{{ actionParameterValues.parameterValue }}</td>
+          <td>
+            <div *ngIf="actionParameterValues.parameter">
+              <a [routerLink]="['/action-parameters', actionParameterValues.parameter.id, 'view']">{{
+                actionParameterValues.parameter.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/action-parameter-values', actionParameterValues.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/action-parameter-values', actionParameterValues.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(actionParameterValues)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

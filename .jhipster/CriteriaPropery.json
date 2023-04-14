@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230414132927",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "criteria_propery",
+  "fields": [
+    {
+      "fieldName": "propertyName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameDe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameEn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameFr",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameIt",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CriteriaPropery",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
