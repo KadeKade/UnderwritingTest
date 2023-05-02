@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="automatedAction">
+      <h2 data-cy="automatedActionDetailsHeading"><span>Automated Action</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ automatedAction.id }}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+          <span>{{ automatedAction.type }}</span>
+        </dd>
+        <dt><span>Positive Action Definition</span></dt>
+        <dd>
+          <span>{{ automatedAction.positiveActionDefinition }}</span>
+        </dd>
+        <dt><span>Negative Action Definition</span></dt>
+        <dd>
+          <span>{{ automatedAction.negativeActionDefinition }}</span>
+        </dd>
+        <dt><span>Display Name De</span></dt>
+        <dd>
+          <span>{{ automatedAction.displayNameDe }}</span>
+        </dd>
+        <dt><span>Display Name En</span></dt>
+        <dd>
+          <span>{{ automatedAction.displayNameEn }}</span>
+        </dd>
+        <dt><span>Display Name Fr</span></dt>
+        <dd>
+          <span>{{ automatedAction.displayNameFr }}</span>
+        </dd>
+        <dt><span>Display Name It</span></dt>
+        <dd>
+          <span>{{ automatedAction.displayNameIt }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/automated-action', automatedAction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
