@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20230502140732",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "action_parameter",
+  "fields": [
+    {
+      "fieldName": "parameterName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameDe",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameEn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameFr",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "displayNameIt",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ActionParameter",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "automatedAction",
+      "relationshipName": "positiveAutomatedActions",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "automatedAction",
+      "relationshipName": "negativeAutomatedActions",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
