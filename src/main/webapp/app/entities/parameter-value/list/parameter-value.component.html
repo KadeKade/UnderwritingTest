@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="ParameterValueHeading">
+    <span>Parameter Values</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parameter-value"
+        [routerLink]="['/parameter-value/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Parameter Value </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="parameterValues?.length === 0">
+    <span>No Parameter Values found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="parameterValues && parameterValues.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="actionParameterValue">
+            <div class="d-flex">
+              <span>Action Parameter Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="actionParameter.id">
+            <div class="d-flex">
+              <span>Action Parameter</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="criteria.id">
+            <div class="d-flex">
+              <span>Criteria</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parameterValue of parameterValues; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/parameter-value', parameterValue.id, 'view']">{{ parameterValue.id }}</a>
+          </td>
+          <td>{{ parameterValue.actionParameterValue }}</td>
+          <td>
+            <div *ngIf="parameterValue.actionParameter">
+              <a [routerLink]="['/parameter', parameterValue.actionParameter.id, 'view']">{{ parameterValue.actionParameter.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="parameterValue.criteria">
+              <a [routerLink]="['/criteria', parameterValue.criteria.id, 'view']">{{ parameterValue.criteria.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/parameter-value', parameterValue.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/parameter-value', parameterValue.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(parameterValue)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

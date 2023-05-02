@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20230502145027",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "criteria",
+  "fields": [
+    {
+      "fieldName": "criteriaActionType",
+      "fieldType": "CriteriaType",
+      "fieldValues": "POSITIVE,NEGATIVE"
+    },
+    {
+      "fieldName": "operator",
+      "fieldType": "Operator",
+      "fieldValues": "NOT_EQUAL_TO,EQUAL_TO,CONTAINS,GREATER_THAN,LESS_THAN,GREATER_THAN_OR_EQUAL_TO,LESS_THAN_OR_EQUAL_TO"
+    },
+    {
+      "fieldName": "criteriaPropertyValue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "positiveActionPropertyValue",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Criteria",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameterValue",
+      "otherEntityRelationshipName": "criteria",
+      "relationshipName": "criteriaParameters",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "criteriaProperty",
+      "relationshipName": "property",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "criteriaSet",
+      "otherEntityRelationshipName": "criterias",
+      "relationshipName": "criteriaSet",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
