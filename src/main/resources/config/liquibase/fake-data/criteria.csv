@@ -1,0 +1,11 @@
+id;criteria_type;operator;criteria_property_value;positive_action_property_value
+1;POSITIVE;GREATER_THAN;Metal;green
+2;NEGATIVE;CONTAINS;Granite frictionless Infrastructure;backing
+3;POSITIVE;NOT_EQUAL_TO;Alaska Fresh;redundant
+4;POSITIVE;GREATER_THAN_OR_EQUAL_TO;1080p Integration;quantify
+5;POSITIVE;LESS_THAN_OR_EQUAL_TO;Kentucky Loan;Persistent Analyst Pound
+6;NEGATIVE;GREATER_THAN_OR_EQUAL_TO;plum Shirt;Enhanced
+7;POSITIVE;GREATER_THAN;Rubber Nepal;violet deposit
+8;NEGATIVE;LESS_THAN;quantify system;parsing task-force synergy
+9;NEGATIVE;LESS_THAN_OR_EQUAL_TO;Fall program Dakota;Steel
+10;NEGATIVE;GREATER_THAN;viral Ohio;withdrawal Innovative
