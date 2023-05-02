@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20230502115314",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "criteria_set",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "insurerId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "lobId",
+      "fieldType": "Long"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CriteriaSet",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "automatedAction",
+      "relationshipName": "automatedAction",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}
