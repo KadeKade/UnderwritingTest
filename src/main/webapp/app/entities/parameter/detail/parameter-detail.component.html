@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parameter">
+      <h2 data-cy="parameterDetailsHeading"><span>Parameter</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ parameter.id }}</span>
+        </dd>
+        <dt><span>Parameter Name</span></dt>
+        <dd>
+          <span>{{ parameter.parameterName }}</span>
+        </dd>
+        <dt><span>Display Name De</span></dt>
+        <dd>
+          <span>{{ parameter.displayNameDe }}</span>
+        </dd>
+        <dt><span>Display Name En</span></dt>
+        <dd>
+          <span>{{ parameter.displayNameEn }}</span>
+        </dd>
+        <dt><span>Display Name Fr</span></dt>
+        <dd>
+          <span>{{ parameter.displayNameFr }}</span>
+        </dd>
+        <dt><span>Display Name It</span></dt>
+        <dd>
+          <span>{{ parameter.displayNameIt }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parameter', parameter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
