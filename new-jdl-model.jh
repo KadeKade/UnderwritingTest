@@ -1,0 +1,84 @@
+enum AutomatedActionType {
+	AUTO_DECLINE,
+    AUTO_OFFER
+}
+
+entity AutomatedAction {
+	type AutomatedActionType,
+    
+    positiveActionDefinition String,
+    negativeActionDefinition String,
+    
+    negativeActionPropertyValue String
+    
+    displayNameDe String,
+    displayNameEn String,
+    displayNameFr String,
+    displayNameIt String
+}
+
+relationship OneToMany {
+	CriteriaSet{criterias} to Criteria
+    AutomatedAction{positiveActionParameters} to ActionParameters,
+    AutomatedAction{negativeActionParameters} to ActionParameters
+}
+
+relationship ManyToOne {
+	Criteria{property} to CriteriaProperty
+    CriteriaSet{automatedAction} to AutomatedAction
+}
+
+
+entity ActionParameters {
+	parameterName String,
+    displayNameDe String,
+    displayNameEn String,
+    displayNameFr String,
+    displayNameIt String
+}
+
+entity CriteriaSet {
+	name String,
+	insurerId Long,
+    lobId Long  
+}
+
+entity Criteria {
+	criteriaType CriteriaType
+    operator Operator,
+    criteriaPropertyValue String
+    positiveActionPropertyValue String
+}
+
+entity CriteriaProperty {
+	propertyName String,
+    propertyType DataType
+    displayNameDe String,
+    displayNameEn String,
+    displayNameFr String,
+    displayNameIt String
+}
+
+enum CriteriaType {
+	POSITIVE,
+    NEGATIVE
+}
+
+enum DataType {
+	STRING,
+    LIST_OF_STRINGS
+    NUMBER,
+    DATE,
+    OTHERS_what_ever
+}
+
+enum Operator {
+  NOT_EQUAL_TO,
+  EQUAL_TO,
+  CONTAINS,
+  GREATER_THAN,
+  LESS_THAN,
+  GREATER_THAN_OR_EQUAL_TO,
+  LESS_THAN_OR_EQUAL_TO
+}
+
