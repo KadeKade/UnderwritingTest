@@ -1,0 +1,134 @@
+<div>
+  <h2 id="page-heading" data-cy="CriteriaPropertyHeading">
+    <span>Criteria Properties</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-criteria-property"
+        [routerLink]="['/criteria-property/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Criteria Property </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="criteriaProperties?.length === 0">
+    <span>No Criteria Properties found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="criteriaProperties && criteriaProperties.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="propertyName">
+            <div class="d-flex">
+              <span>Property Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="propertyType">
+            <div class="d-flex">
+              <span>Property Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="displayNameDe">
+            <div class="d-flex">
+              <span>Display Name De</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="displayNameEn">
+            <div class="d-flex">
+              <span>Display Name En</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="displayNameFr">
+            <div class="d-flex">
+              <span>Display Name Fr</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="displayNameIt">
+            <div class="d-flex">
+              <span>Display Name It</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="property.id">
+            <div class="d-flex">
+              <span>Property</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criteriaProperty of criteriaProperties; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/criteria-property', criteriaProperty.id, 'view']">{{ criteriaProperty.id }}</a>
+          </td>
+          <td>{{ criteriaProperty.propertyName }}</td>
+          <td>{{ criteriaProperty.propertyType }}</td>
+          <td>{{ criteriaProperty.displayNameDe }}</td>
+          <td>{{ criteriaProperty.displayNameEn }}</td>
+          <td>{{ criteriaProperty.displayNameFr }}</td>
+          <td>{{ criteriaProperty.displayNameIt }}</td>
+          <td>
+            <div *ngIf="criteriaProperty.property">
+              <a [routerLink]="['/criteria', criteriaProperty.property.id, 'view']">{{ criteriaProperty.property.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/criteria-property', criteriaProperty.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/criteria-property', criteriaProperty.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(criteriaProperty)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
