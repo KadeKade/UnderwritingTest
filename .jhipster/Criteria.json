@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20230503112045",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "criteria",
+  "fields": [
+    {
+      "fieldName": "criteriaActionType",
+      "fieldType": "CriteriaType",
+      "fieldValues": "POSITIVE,NEGATIVE"
+    },
+    {
+      "fieldName": "operator",
+      "fieldType": "Operator",
+      "fieldValues": "NOT_EQUAL_TO,EQUAL_TO,CONTAINS,GREATER_THAN,LESS_THAN,GREATER_THAN_OR_EQUAL_TO,LESS_THAN_OR_EQUAL_TO"
+    },
+    {
+      "fieldName": "criteriaDefinition",
+      "fieldType": "CriteriaDefinition",
+      "fieldValues": "CREDITWORTHINESS,SALARY_SUMM,AMOUNT_OF_EMPLOYEES"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Criteria",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "criteriaParameter",
+      "otherEntityRelationshipName": "criteria",
+      "relationshipName": "criteriaParameters",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "criteriaSet",
+      "otherEntityRelationshipName": "criterias",
+      "relationshipName": "criteriaSet",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

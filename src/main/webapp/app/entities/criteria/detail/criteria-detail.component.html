@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="criteria">
+      <h2 data-cy="criteriaDetailsHeading"><span>Criteria</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ criteria.id }}</span>
+        </dd>
+        <dt><span>Criteria Action Type</span></dt>
+        <dd>
+          <span>{{ criteria.criteriaActionType }}</span>
+        </dd>
+        <dt><span>Operator</span></dt>
+        <dd>
+          <span>{{ criteria.operator }}</span>
+        </dd>
+        <dt><span>Criteria Definition</span></dt>
+        <dd>
+          <span>{{ criteria.criteriaDefinition }}</span>
+        </dd>
+        <dt><span>Criteria Set</span></dt>
+        <dd>
+          <div *ngIf="criteria.criteriaSet">
+            <a [routerLink]="['/criteria-set', criteria.criteriaSet.id, 'view']">{{ criteria.criteriaSet.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/criteria', criteria.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

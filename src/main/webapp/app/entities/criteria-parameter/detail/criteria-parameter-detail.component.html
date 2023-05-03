@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="criteriaParameter">
+      <h2 data-cy="criteriaParameterDetailsHeading"><span>Criteria Parameter</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ criteriaParameter.id }}</span>
+        </dd>
+        <dt><span>Parameter Name</span></dt>
+        <dd>
+          <span>{{ criteriaParameter.parameterName }}</span>
+        </dd>
+        <dt><span>Parameter Value</span></dt>
+        <dd>
+          <span>{{ criteriaParameter.parameterValue }}</span>
+        </dd>
+        <dt><span>Criteria</span></dt>
+        <dd>
+          <div *ngIf="criteriaParameter.criteria">
+            <a [routerLink]="['/criteria', criteriaParameter.criteria.id, 'view']">{{ criteriaParameter.criteria.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/criteria-parameter', criteriaParameter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
