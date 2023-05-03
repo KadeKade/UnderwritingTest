@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-criteria-set-heading" data-cy="CriteriaSetCreateUpdateHeading">Create or edit a Criteria Set</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_insurerId">Insurer Id</label>
+          <input type="number" class="form-control" name="insurerId" id="field_insurerId" data-cy="insurerId" formControlName="insurerId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_lobId">Lob Id</label>
+          <input type="number" class="form-control" name="lobId" id="field_lobId" data-cy="lobId" formControlName="lobId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_brokerCategory">Broker Category</label>
+          <input
+            type="text"
+            class="form-control"
+            name="brokerCategory"
+            id="field_brokerCategory"
+            data-cy="brokerCategory"
+            formControlName="brokerCategory"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_automatedAction">Automated Action</label>
+          <select
+            class="form-control"
+            id="field_automatedAction"
+            data-cy="automatedAction"
+            name="automatedAction"
+            formControlName="automatedAction"
+            [compareWith]="compareAutomatedAction"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="automatedActionOption" *ngFor="let automatedActionOption of automatedActionsSharedCollection">
+              {{ automatedActionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="CriteriaHeading">
+    <span>Criteria</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-criteria"
+        [routerLink]="['/criteria/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Criteria </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="criteria?.length === 0">
+    <span>No Criteria found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="criteria && criteria.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="criteriaActionType">
+            <div class="d-flex">
+              <span>Criteria Action Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="operator">
+            <div class="d-flex">
+              <span>Operator</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="criteriaDefinition">
+            <div class="d-flex">
+              <span>Criteria Definition</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="criteriaSet.id">
+            <div class="d-flex">
+              <span>Criteria Set</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criteria of criteria; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/criteria', criteria.id, 'view']">{{ criteria.id }}</a>
+          </td>
+          <td>{{ criteria.criteriaActionType }}</td>
+          <td>{{ criteria.operator }}</td>
+          <td>{{ criteria.criteriaDefinition }}</td>
+          <td>
+            <div *ngIf="criteria.criteriaSet">
+              <a [routerLink]="['/criteria-set', criteria.criteriaSet.id, 'view']">{{ criteria.criteriaSet.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/criteria', criteria.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/criteria', criteria.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(criteria)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-automated-action-heading" data-cy="AutomatedActionCreateUpdateHeading">Create or edit a Automated Action</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let automatedActionType of automatedActionTypeValues" [value]="automatedActionType">automatedActionType</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_positiveActionDefinition">Positive Action Definition</label>
+          <input
+            type="text"
+            class="form-control"
+            name="positiveActionDefinition"
+            id="field_positiveActionDefinition"
+            data-cy="positiveActionDefinition"
+            formControlName="positiveActionDefinition"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_negativeActionDefinition">Negative Action Definition</label>
+          <input
+            type="text"
+            class="form-control"
+            name="negativeActionDefinition"
+            id="field_negativeActionDefinition"
+            data-cy="negativeActionDefinition"
+            formControlName="negativeActionDefinition"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_negativeActionPropertyValue">Negative Action Property Value</label>
+          <input
+            type="text"
+            class="form-control"
+            name="negativeActionPropertyValue"
+            id="field_negativeActionPropertyValue"
+            data-cy="negativeActionPropertyValue"
+            formControlName="negativeActionPropertyValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_displayNameDe">Display Name De</label>
+          <input
+            type="text"
+            class="form-control"
+            name="displayNameDe"
+            id="field_displayNameDe"
+            data-cy="displayNameDe"
+            formControlName="displayNameDe"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_displayNameEn">Display Name En</label>
+          <input
+            type="text"
+            class="form-control"
+            name="displayNameEn"
+            id="field_displayNameEn"
+            data-cy="displayNameEn"
+            formControlName="displayNameEn"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_displayNameFr">Display Name Fr</label>
+          <input
+            type="text"
+            class="form-control"
+            name="displayNameFr"
+            id="field_displayNameFr"
+            data-cy="displayNameFr"
+            formControlName="displayNameFr"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_displayNameIt">Display Name It</label>
+          <input
+            type="text"
+            class="form-control"
+            name="displayNameIt"
+            id="field_displayNameIt"
+            data-cy="displayNameIt"
+            formControlName="displayNameIt"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
