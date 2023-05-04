@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="criteriaSet">
+      <h2 data-cy="criteriaSetDetailsHeading"><span>Criteria Set</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ criteriaSet.id }}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+          <span>{{ criteriaSet.name }}</span>
+        </dd>
+        <dt><span>Priority</span></dt>
+        <dd>
+          <span>{{ criteriaSet.priority }}</span>
+        </dd>
+        <dt><span>Insurer Id</span></dt>
+        <dd>
+          <span>{{ criteriaSet.insurerId }}</span>
+        </dd>
+        <dt><span>Lob Id</span></dt>
+        <dd>
+          <span>{{ criteriaSet.lobId }}</span>
+        </dd>
+        <dt><span>Automated Action</span></dt>
+        <dd>
+          <div *ngIf="criteriaSet.automatedAction">
+            <a [routerLink]="['/automated-action', criteriaSet.automatedAction.id, 'view']">{{ criteriaSet.automatedAction.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Broker Categories</span></dt>
+        <dd>
+          <span *ngFor="let brokerCategories of criteriaSet.brokerCategories; let last = last">
+            <a [routerLink]="['/broker-category', brokerCategories.id, 'view']">{{ brokerCategories.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/criteria-set', criteriaSet.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
