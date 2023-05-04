@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="CriteriaSetHeading">
+    <span>Criteria Sets</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-criteria-set"
+        [routerLink]="['/criteria-set/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Criteria Set </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="criteriaSets?.length === 0">
+    <span>No Criteria Sets found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="criteriaSets && criteriaSets.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span>Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="priority">
+            <div class="d-flex">
+              <span>Priority</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="insurerId">
+            <div class="d-flex">
+              <span>Insurer Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lobId">
+            <div class="d-flex">
+              <span>Lob Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="automatedAction.id">
+            <div class="d-flex">
+              <span>Automated Action</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="brokerCategories.id">
+            <div class="d-flex">
+              <span>Broker Categories</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criteriaSet of criteriaSets; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/criteria-set', criteriaSet.id, 'view']">{{ criteriaSet.id }}</a>
+          </td>
+          <td>{{ criteriaSet.name }}</td>
+          <td>{{ criteriaSet.priority }}</td>
+          <td>{{ criteriaSet.insurerId }}</td>
+          <td>{{ criteriaSet.lobId }}</td>
+          <td>
+            <div *ngIf="criteriaSet.automatedAction">
+              <a [routerLink]="['/automated-action', criteriaSet.automatedAction.id, 'view']">{{ criteriaSet.automatedAction.id }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let brokerCategories of criteriaSet.brokerCategories; let last = last">
+              <a class="form-control-static" [routerLink]="['/broker-category', brokerCategories.id, 'view']">{{ brokerCategories.id }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/criteria-set', criteriaSet.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/criteria-set', criteriaSet.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(criteriaSet)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
